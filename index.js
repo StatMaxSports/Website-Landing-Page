@@ -6,21 +6,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const aiOverlays = document.querySelector('#ai-overlays');
 
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-
         // Background Video Opacity/Scale Effect
         const scrollPercent = window.scrollY / window.innerHeight;
-        if (scrollPercent < 1.5) {
-            const opacity = 1 - (scrollPercent * 0.5);
-            bgVideo.style.opacity = Math.max(0.4, opacity);
-            videoOverlay.style.background = `linear-gradient(to bottom, rgba(15, 20, 50, ${0.4 + scrollPercent * 0.4}), rgba(15, 20, 50, ${0.8 + scrollPercent * 0.2}))`;
 
-            // Fade out the AI overlays as we scroll away from hero
-            aiOverlays.style.opacity = Math.max(0, 0.8 - scrollPercent * 1.5);
+        if (scrollPercent < 1) {
+            const opacity = 1 - (scrollPercent * 0.5);
+            bgVideo.style.opacity = Math.max(0.5, opacity);
+            videoOverlay.style.background = `linear-gradient(to bottom, rgba(15, 20, 50, ${0.4 + scrollPercent * 0.4}), rgba(15, 20, 50, ${0.8 + scrollPercent * 0.2}))`;
+        } else {
+            // Standardize transparency for all sections below hero
+            bgVideo.style.opacity = 0.5;
+            videoOverlay.style.background = `linear-gradient(to bottom, rgba(15, 20, 50, 0.8), rgba(15, 20, 50, 1))`;
         }
     });
 
@@ -59,16 +55,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1500);
         });
     }
-
-    // Dynamic AI Overlays Movement (Subtle simulation)
-    const boxes = document.querySelectorAll('.ai-box');
-    document.addEventListener('mousemove', (e) => {
-        const x = (e.clientX / window.innerWidth - 0.5) * 20;
-        const y = (e.clientY / window.innerHeight - 0.5) * 20;
-
-        boxes.forEach((box, index) => {
-            const shift = (index + 1) * 0.5;
-            box.style.transform = `translate(${x * shift}px, ${y * shift}px)`;
-        });
-    });
 });

@@ -40,10 +40,11 @@ body {
 /* Persistent Background Video */
 .video-bg-container {
     position: fixed;
-    top: 0;
+    top: 80px;
+    /* Adjusted to start below the header height */
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 80px);
     z-index: -1;
     overflow: hidden;
 }
@@ -148,15 +149,12 @@ body {
     left: 0;
     width: 100%;
     z-index: 100;
-    padding: 1.5rem 0;
-    transition: var(--transition-smooth);
-}
-
-.site-header.scrolled {
-    background: rgba(15, 20, 50, 0.8);
-    backdrop-filter: blur(10px);
     padding: 1rem 0;
+    background: linear-gradient(90deg, #0f1432 0%, #1a235a 100%);
     border-bottom: 1px solid var(--glass-border);
+    height: 80px;
+    display: flex;
+    align-items: center;
 }
 
 .main-nav {
@@ -217,8 +215,8 @@ body {
 
 .highlight {
     color: var(--accent-yellow);
-    -webkit-text-stroke: 1px var(--accent-yellow);
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: var(--accent-yellow);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .hero p {
