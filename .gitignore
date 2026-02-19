@@ -1,0 +1,7 @@
+.env
+.tmp/
+*.json
+!MAX.md
+# Credentials mentioned in MAX.md
+credentials.json
+token.json
